@@ -2,18 +2,11 @@
 
 namespace Jhmilan\StatsCollector;
 
-use Jhmilan\StatsCollector\StatsD;
+use Jhmilan\StatsCollector\Services\StatsD;
 use Illuminate\Support\ServiceProvider;
 
 class StatsCollectorServiceProvider extends ServiceProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
     /**
      * Perform post-registration booting of services.
      *
@@ -33,18 +26,8 @@ class StatsCollectorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(StatsD::class, function ($app) {
+        $this->app->singleton('statscollector', function ($app) {
             return new StatsD();
         });
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [StatsD::class];
     }
 }

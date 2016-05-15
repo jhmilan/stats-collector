@@ -23,7 +23,7 @@ Jhmilan\StatsCollector\ServiceProvider::class,
 ```
 
 ``` bash
-'StatsCollector' => Jhmilan\StatsCollector\Facade::class,
+'StatsCollector' => Jhmilan\StatsCollector\Facades\StatsCollector::class,
 ```
 
 ## Usage

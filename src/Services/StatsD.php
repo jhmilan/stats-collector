@@ -1,6 +1,6 @@
 <?php
 
-namespace Jhmilan\StatsCollector;
+namespace Jhmilan\StatsCollector\Services;
 
 use Domnikl\Statsd\Client;
 use Domnikl\Statsd\Connection\UdpSocket;
