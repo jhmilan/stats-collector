@@ -3,8 +3,6 @@
 namespace Jhmilan\StatsCollector\Services;
 
 use Domnikl\Statsd\Client;
-use Domnikl\Statsd\Connection\UdpSocket;
-use Domnikl\Statsd\Connection\TcpSocket;
 
 class StatsD
 {
@@ -20,8 +18,14 @@ class StatsD
      */
     public function __construct()
     {
-        $socketClass = strtolower(config('statscollector.mode')) == 'tcp' ? 'TcpSocket' : 'UdpSocket';
+        if (strtolower(config('statscollector.mode')) == 'tcp') {
+            $socketClass = "\\Domnikl\\Statsd\\Connection\\TcpSocket";
+        } else {
+            $socketClass = "\\Domnikl\\Statsd\\Connection\\UdpSocket";
+        }
+
         $connection = new $socketClass(config('statscollector.host'), config('statscollector.port'));
+
         $this->client = new Client($connection, config('statscollector.ns'));
 
         if (config('statscollector.ns-prefix')) {
