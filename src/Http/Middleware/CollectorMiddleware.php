@@ -19,29 +19,29 @@ class CollectorMiddleware
     {
         $key = str_replace('/', '.', $request->path());
 
-        if (config('statscontroller.auto-collect.request-time')) {
+        if (config('statscollector.auto-collect.request-time')) {
             StatsCollector::startTiming($key);
         }
 
-        if (config('statscontroller.auto-collect.db-profile')) {
+        if (config('statscollector.auto-collect.db-profile')) {
             StatsCollector::startMemoryProfile($key);
         }
 
-        if (config('statscontroller.auto-collect.db-profile')) {
+        if (config('statscollector.auto-collect.db-profile')) {
             DB::enableQueryLog();
         }
 
         $response = $next($request);
 
-        if (config('statscontroller.auto-collect.request-time')) {
+        if (config('statscollector.auto-collect.request-time')) {
             StatsCollector::endTiming($key);
         }
 
-        if (config('statscontroller.auto-collect.memory-profile')) {
+        if (config('statscollector.auto-collect.memory-profile')) {
             StatsCollector::endMemoryProfile($key);
         }
 
-        if (config('statscontroller.auto-collect.db-profile')) {
+        if (config('statscollector.auto-collect.db-profile')) {
             StatsCollector::count($key.'.num-queries', count(DB::getQueryLog()));
         }
 

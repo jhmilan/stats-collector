@@ -12,6 +12,5 @@ return [
         'memory-profile' => true,
         //heads up! Production environment: it will enable query log in middleware!
         'db-profile' => true,
-    ]
-
+    ],
 ];
