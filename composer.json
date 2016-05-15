@@ -31,12 +31,12 @@
     },
     "autoload": {
         "psr-4": {
-            "jhmilan\\StatsCollector\\": "src"
+            "Jhmilan\\StatsCollector\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "jhmilan\\StatsCollector\\": "tests"
+            "Jhmilan\\StatsCollector\\": "tests"
         }
     },
     "scripts": {
