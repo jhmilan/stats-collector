@@ -37,6 +37,12 @@ echo StatsCollecor::time('foo.bar', 300);
 php artisan vendor:publish --provider="Jhmilan\StatsCollector\StatsCollectorServiceProvider"
 ```
 
+Add this middleware to your App Middleware to auto collect (config based), request time, request memory usage and request DB operations
+
+``` bash
+Jhmilan\StatsCollector\Http\Middleware\CollectorMiddleware
+```
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
