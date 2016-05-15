@@ -7,8 +7,6 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-**Note:** Replace ```Jose H. Milán``` ```jhmilan``` ```http://www.jmilan.net``` ```jhmilan@gmail.com``` ```jhmilan``` ```StatsCollector``` ```Send stats to Statsd with Laravel easily``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line.
-
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
 PSRs you support to avoid any confusion with users and contributors.
 
@@ -20,11 +18,19 @@ Via Composer
 $ composer require jhmilan/StatsCollector
 ```
 
+``` bash
+Jhmilan\StatsCollector\ServiceProvider::class,
+```
+
+``` bash
+'StatsCollector' => Jhmilan\StatsCollector\Facade::class,
+```
+
 ## Usage
 
 ``` php
-$skeleton = new League\Skeleton();
-echo $skeleton->echoPhrase('Hello, League!');
+echo StatsCollecor::time('foo.bar', 300);
+...
 ```
 
 ## Change log

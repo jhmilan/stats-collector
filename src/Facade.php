@@ -1,8 +1,9 @@
 <?php
 
 use namespace Jhmilan\StatsCollector;
+use Illuminate\Support\Facades\Facade as BaseFacade;
 
-class StatsCollector extends Facade
+class Facade extends BaseFacade
 {
     /**
      * Get the registered name of the component.

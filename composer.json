@@ -1,5 +1,5 @@
 {
-    "name": "jhmilan/StatsCollector",
+    "name": "jhmilan/stats-collector",
     "type": "library",
     "description": "Send stats to Statsd with Laravel easily",
     "keywords": [
