@@ -1,6 +1,7 @@
 <?php
 
-use namespace Jhmilan\StatsCollector;
+namespace Jhmilan\StatsCollector;
+
 use Illuminate\Support\Facades\Facade as BaseFacade;
 
 class Facade extends BaseFacade

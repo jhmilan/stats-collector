@@ -30,6 +30,37 @@ class StatsD
     }
 
     /**
+     * Increment metric key
+     *
+     * @param string $key Something like: 'foo.bar'
+     */
+    public function increment($key)
+    {
+        $this->client->increment($key);
+    }
+
+    /**
+     * Decrement metric key
+     *
+     * @param string $key Something like: 'foo.bar'
+     */
+    public function decrement($key)
+    {
+        $this->client->decrement($key);
+    }
+
+    /**
+     * Timing metric
+     *
+     * @param string $key   Something like: 'foo.bar'
+     * @param int    $value Something like: 320
+     */
+    public function count($key, $value)
+    {
+        $this->client->count($key, $value);
+    }
+
+    /**
      * Timing metric
      *
      * @param string $key   Something like: 'foo.bar'
