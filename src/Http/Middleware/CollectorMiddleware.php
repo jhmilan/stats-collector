@@ -17,14 +17,17 @@ class CollectorMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $key = str_replace('/', '.', $request->path());
+        $keyRequest = 'requests.'.str_replace('/', '.', $request->path());
+        $keyAll = 'requests.all';
 
         if (config('statscollector.auto-collect.request-time')) {
-            StatsCollector::startTiming($key);
+            StatsCollector::startTiming($keyRequest);
+            StatsCollector::startTiming($keyAll);
         }
 
-        if (config('statscollector.auto-collect.db-profile')) {
-            StatsCollector::startMemoryProfile($key);
+        if (config('statscollector.auto-collect.memory-profile')) {
+            StatsCollector::startMemoryProfile($keyRequest);
+            StatsCollector::startMemoryProfile($keyAll);
         }
 
         if (config('statscollector.auto-collect.db-profile')) {
@@ -34,15 +37,19 @@ class CollectorMiddleware
         $response = $next($request);
 
         if (config('statscollector.auto-collect.request-time')) {
-            StatsCollector::endTiming($key);
+            StatsCollector::endTiming($keyRequest);
+            StatsCollector::endTiming($keyAll);
         }
 
         if (config('statscollector.auto-collect.memory-profile')) {
-            StatsCollector::endMemoryProfile($key);
+            StatsCollector::endMemoryProfile($keyRequest);
+            StatsCollector::endMemoryProfile($keyAll);
         }
 
         if (config('statscollector.auto-collect.db-profile')) {
-            StatsCollector::count($key.'.num-queries', count(DB::getQueryLog()));
+            $numQueries = count(DB::getQueryLog());
+            StatsCollector::count($keyRequest.'.num-queries', $numQueries);
+            StatsCollector::count($keyAll.'.num-queries', $numQueries);
         }
 
         return $response;
