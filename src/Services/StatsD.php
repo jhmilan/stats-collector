@@ -85,7 +85,7 @@ class StatsD
      *
      * @param string $key Something like: 'foo.bar'
      */
-    public function increment($key)
+    private function increment($key)
     {
         $this->client->increment($key);
     }
@@ -95,7 +95,7 @@ class StatsD
      *
      * @param string $key Something like: 'foo.bar'
      */
-    public function decrement($key)
+    private function decrement($key)
     {
         $this->client->decrement($key);
     }
@@ -106,7 +106,7 @@ class StatsD
      * @param string $key   Something like: 'foo.bar'
      * @param int    $value Something like: 320
      */
-    public function count($key, $value)
+    private function count($key, $value)
     {
         $this->client->count($key, $value);
     }
@@ -117,7 +117,7 @@ class StatsD
      * @param string $key   Something like: 'foo.bar'
      * @param int    $value Something like: 320
      */
-    public function timing($key, $value)
+    private function timing($key, $value)
     {
         $this->client->timing($key, $value);
     }
@@ -128,7 +128,7 @@ class StatsD
      * @param string  $key     Something like: 'foo.bar'
      * @param Closure $closure Something like: function ( ) { ... }
      */
-    public function time($key, $closure)
+    private function time($key, $closure)
     {
         $this->client->time($key, $closure);
     }
@@ -138,7 +138,7 @@ class StatsD
      *
      * @param string $key Something like: 'foo.bar'
      */
-    public function startTiming($key)
+    private function startTiming($key)
     {
         $this->client->startTiming($key);
     }
@@ -148,7 +148,7 @@ class StatsD
      *
      * @param string $key Something like: 'foo.bar'
      */
-    public function endTiming($key)
+    private function endTiming($key)
     {
         $this->client->endTiming($key);
     }
@@ -158,7 +158,7 @@ class StatsD
      *
      * @param string $key Something like: 'foo.bar'
      */
-    public function memory($key)
+    private function memory($key)
     {
         $this->client->memory($key);
     }
@@ -168,7 +168,7 @@ class StatsD
      *
      * @param string $key Something like: 'foo.bar'
      */
-    public function startMemoryProfile($key)
+    private function startMemoryProfile($key)
     {
         $this->client->startMemoryProfile($key);
     }
@@ -178,7 +178,7 @@ class StatsD
      *
      * @param string $key Something like: 'foo.bar'
      */
-    public function endMemoryProfile($key)
+    private function endMemoryProfile($key)
     {
         $this->client->endMemoryProfile($key);
     }
@@ -189,7 +189,7 @@ class StatsD
      * @param string $key   Something like: 'foo.bar'
      * @param mixed  $value Absolute values, e.g.: 3, or delta values e.g.: '-11', '+14'
      */
-    public function gauge($key, $value)
+    private function gauge($key, $value)
     {
         $this->client->gauge($key, $value);
     }
@@ -200,7 +200,7 @@ class StatsD
      * @param string $key   Something like: 'userId'
      * @param mixed  $value 1234
      */
-    public function set($key, $value)
+    private function set($key, $value)
     {
         $this->client->set($key, $value);
     }
