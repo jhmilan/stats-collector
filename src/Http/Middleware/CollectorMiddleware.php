@@ -26,8 +26,9 @@ class CollectorMiddleware
         }
 
         if (config('statscollector.auto-collect.memory-profile')) {
-            StatsCollector::startMemoryProfile($keyRequest);
-            StatsCollector::startMemoryProfile($keyAll);
+            //memory metrics are internally just a counter, use an appropriate key
+            StatsCollector::startMemoryProfile($keyRequest.'.memory');
+            StatsCollector::startMemoryProfile($keyAll.'.memory');
         }
 
         if (config('statscollector.auto-collect.db-profile')) {
@@ -42,8 +43,9 @@ class CollectorMiddleware
         }
 
         if (config('statscollector.auto-collect.memory-profile')) {
-            StatsCollector::endMemoryProfile($keyRequest);
-            StatsCollector::endMemoryProfile($keyAll);
+            //memory metrics are internally just a counter, use an appropriate key
+            StatsCollector::endMemoryProfile($keyRequest.'.memory');
+            StatsCollector::endMemoryProfile($keyAll.'.memory');
         }
 
         if (config('statscollector.auto-collect.db-profile')) {
