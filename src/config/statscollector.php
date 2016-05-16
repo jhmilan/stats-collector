@@ -6,6 +6,7 @@ return [
     'ns' => env('STATS_COLLECTOR_NS', 'myapp.namespace'),
     'ns-prefix' => env('STATS_COLLECTOR_NS_PREFIX'),
     'mode' => env('STATS_COLLECTOR_MODE', 'udp'),
+    'environments' => env('STATS_COLLECTOR_ALLOW_ENVS', 'local, staging, production'),
 
     'auto-collect' => [
         'request-time' => true,

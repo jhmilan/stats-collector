@@ -14,6 +14,20 @@ class StatsD
     protected $client;
 
     /**
+     * allowed environments
+     *
+     * @var array
+     */
+    protected $environments;
+
+    /**
+     * allowed methods
+     *
+     * @var array
+     */
+    protected $methods;
+
+    /**
      * Create a new Skeleton Instance
      */
     public function __construct()
@@ -30,6 +44,39 @@ class StatsD
 
         if (config('statscollector.ns-prefix')) {
             $this->client->setNamespace(config('statscollector.ns-prefix'));
+        }
+
+        $envs = explode(',', config('statscollector.environments'));
+        $this->environments = array_map('trim', $envs);
+        $this->methods = [
+            'increment',
+            'decrement',
+            'count',
+            'timing',
+            'time',
+            'startTiming',
+            'endTiming',
+            'memory',
+            'startMemoryProfile',
+            'endMemoryProfile',
+            'gauge',
+            'set',
+        ];
+    }
+
+    /**
+     * Magic method to check any action before
+     *
+     * @param string $method
+     * @param array  $parameters
+     *
+     * @return method call
+     */
+    public function __call($method, $parameters)
+    {
+        //just allow some methods and some environments
+        if (in_array($method, $this->methods) && in_array(app()->environment(), $this->environments)) {
+            return call_user_func_array(array($this, $method), $parameters);
         }
     }
 

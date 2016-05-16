@@ -7,8 +7,7 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
+Just a small Laravel5 wrapper over Domnikl\Statsd to send data to StatsD/Graphite really easily.
 
 ## Install
 
@@ -18,23 +17,30 @@ Via Composer
 $ composer require jhmilan/StatsCollector
 ```
 
+## Setup
+
+Add the service provider to your config.app.php
 ``` bash
 Jhmilan\StatsCollector\ServiceProvider::class,
 ```
 
+Add the facade to your config.app.php
 ``` bash
 'StatsCollector' => Jhmilan\StatsCollector\Facades\StatsCollector::class,
 ```
 
+Publish the config file (a new config/statscollector.php file will be created, populate your .env as per the variables in the file)
+``` bash
+php artisan vendor:publish --provider="Jhmilan\StatsCollector\StatsCollectorServiceProvider"
+```
+
 ## Usage
+
+Send timers, countes, etc just calling a method! (see /src/Services/StatsD.php to figure out which methods are available)
 
 ``` php
 echo StatsCollecor::time('foo.bar', 300);
 ...
-```
-
-``` bash
-php artisan vendor:publish --provider="Jhmilan\StatsCollector\StatsCollectorServiceProvider"
 ```
 
 Add this middleware to your App Middleware to auto collect (config based), request time, request memory usage and request DB operations
@@ -42,6 +48,10 @@ Add this middleware to your App Middleware to auto collect (config based), reque
 ``` bash
 Jhmilan\StatsCollector\Http\Middleware\CollectorMiddleware
 ```
+
+## To-do
+
+This package is still WIP, no time for tests or good docs yet! sorry
 
 ## Change log
 
