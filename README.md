@@ -21,7 +21,7 @@ $ composer require jhmilan/StatsCollector
 
 Add the service provider to your config.app.php
 ``` bash
-Jhmilan\StatsCollector\ServiceProvider::class,
+Jhmilan\StatsCollector\StatsCollectorServiceProvider::class,
 ```
 
 Add the facade to your config.app.php
