@@ -20,6 +20,11 @@ class CollectorMiddleware
         $keyRequest = 'requests.'.str_replace('/', '.', $request->path());
         $keyAll = 'requests.all';
 
+        if (config('statscollector.auto-collect.num-requests')) {
+            StatsCollector::increment($keyRequest.'.num-requests');
+            StatsCollector::increment($keyAll.'.num-requests');
+        }
+
         if (config('statscollector.auto-collect.request-time')) {
             StatsCollector::startTiming($keyRequest);
             StatsCollector::startTiming($keyAll);
